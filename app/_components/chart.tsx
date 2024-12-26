@@ -1,9 +1,34 @@
-import { ChartData, ChartOptions } from 'chart.js';
+'use client';
+
 import React from 'react';
 import { Bar, Doughnut, Line, Pie } from 'react-chartjs-2';
+import {
+  Chart as ChartJS,
+  CategoryScale,
+  LinearScale,
+  PointElement,
+  LineElement,
+  BarElement,
+  Title,
+  Tooltip,
+  Legend,
+  ChartData,
+  ChartOptions,
+} from 'chart.js';
+
+ChartJS.register(
+  CategoryScale,
+  LinearScale,
+  PointElement,
+  LineElement,
+  BarElement,
+  Title,
+  Tooltip,
+  Legend,
+);
 
 interface ChartSelectorProps {
-  chartType: 'bar' | 'line' | 'pie' | 'doughnut'; // 차트 타입
+  type: 'bar' | 'line' | 'pie' | 'doughnut'; // 차트 타입
   data: ChartData; // 차트 데이터
   options?: ChartOptions; // 차트 옵션 (선택 사항)
 }
@@ -12,17 +37,17 @@ interface ChartProps extends ChartSelectorProps {
   title: string;
 }
 
-const Chart = ({ title, chartType, data, options }: ChartProps) => {
+const Chart = ({ title, type, data, options }: ChartProps) => {
   return (
-    <div className="bg-red-300 w-full h-full">
+    <div className="w-full h-full border">
       <h3>{title}</h3>
-      <ChartSelector chartType={chartType} data={data} options={options} />
+      <ChartSelector type={type} data={data} options={options} />
     </div>
   );
 };
 
-const ChartSelector = ({ chartType, data, options }: ChartSelectorProps) => {
-  switch (chartType) {
+const ChartSelector = ({ type, data, options }: ChartSelectorProps) => {
+  switch (type) {
     case 'bar':
       return (
         <Bar
