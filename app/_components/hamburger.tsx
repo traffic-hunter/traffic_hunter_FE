@@ -7,7 +7,6 @@ const HamburgerMenu = () => {
 
   return (
     <div className="relative">
-      {/* 햄버거 버튼 */}
       <button
         onClick={() => setIsOpen(!isOpen)}
         className="flex flex-col justify-center items-center w-10 h-10 space-y-1 group"
