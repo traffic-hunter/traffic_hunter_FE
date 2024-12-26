@@ -1,13 +1,14 @@
 import Image from 'next/image';
 import HamburgerMenu from './_components/hamburger';
 import SearchBar from './_components/seachBar';
+import Link from 'next/link';
 
 export default function Home() {
   return (
     <>
       <header className="p-2">
         <div className="flex items-center justify-between h-12">
-          <div>
+          <Link href="/">
             <Image
               className="dark:invert"
               src="/next.svg"
@@ -15,7 +16,7 @@ export default function Home() {
               width={80}
               height={80}
             />
-          </div>
+          </Link>
           <SearchBar />
           <div>
             <div className="flex relative items-center justify-center rounded-full overflow-hidden border border-gray-300 w-12 h-12">
