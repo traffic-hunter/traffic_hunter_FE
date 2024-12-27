@@ -39,7 +39,7 @@ interface ChartProps extends ChartSelectorProps {
 
 const Chart = ({ title, type, data, options }: ChartProps) => {
   return (
-    <div className="w-full h-full border">
+    <div className="w-full h-full p-2 border">
       <h3>{title}</h3>
       <ChartSelector type={type} data={data} options={options} />
     </div>

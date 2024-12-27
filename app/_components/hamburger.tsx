@@ -28,13 +28,13 @@ const HamburgerMenu = () => {
         className="flex flex-col justify-center items-center w-10 h-10 space-y-1 group"
       >
         <div
-          className={`h-1 w-8 bg-black rounded transform transition duration-300`}
+          className={`h-0.5 w-6 bg-black rounded transform transition duration-300`}
         ></div>
         <div
-          className={`h-1 w-8 bg-black rounded transition duration-300`}
+          className={`h-0.5 w-6 bg-black rounded transition duration-300`}
         ></div>
         <div
-          className={`h-1 w-8 bg-black rounded transform transition duration-300`}
+          className={`h-0.5 w-6 bg-black rounded transform transition duration-300`}
         ></div>
       </button>
 
