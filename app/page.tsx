@@ -4,8 +4,14 @@ import SearchBar from './_components/seachBar';
 import Link from 'next/link';
 import { data, options } from './_lib/data';
 import Chart from './_components/chart';
+import { auth } from '@/auth';
+import { redirect } from 'next/navigation';
 
-export default function Home() {
+export default async function Home() {
+
+  const session = await auth();
+
+  if(!session) redirect('/api/auth/signin')
   return (
     <>
       <header className="p-2">
@@ -20,10 +26,11 @@ export default function Home() {
             />
           </Link>
           <SearchBar />
-          <div>
+          <div className='flex items-center'>
+            <span>{session.user?.name}님 반갑습니다.</span>
             <div className="flex relative items-center justify-center rounded-full overflow-hidden border border-gray-300 w-12 h-12 cursor-pointer">
               <Image
-                src="/next.svg"
+                src={session?.user?.image || ''}
                 alt="profile image"
                 fill
                 className="object-cover"
