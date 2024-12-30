@@ -6,6 +6,7 @@ import { data, options } from './_lib/data';
 import Chart from './_components/chart';
 import { auth } from '@/auth';
 import { redirect } from 'next/navigation';
+import Logout from './_components/logout';
 
 export default async function Home() {
 
@@ -36,6 +37,7 @@ export default async function Home() {
                 className="object-cover"
               />
             </div>
+            <Logout /> 
           </div>
         </div>
         <div className="flex items-center">
