@@ -1,15 +1,24 @@
 import { NextRequest, NextResponse } from "next/server";
 
 export async function middleware(req : NextRequest) {
-  const { pathname } = req.nextUrl;
-
-  // 쿠키에서 세션 토큰 확인
   const sessionToken = req.cookies.get("authjs.session-token");
+  const SIGNIN_URL = '/api/auth/signin';
 
-  // 로그인된 사용자가 로그인 페이지에 접근 시 리다이렉트
-  if (pathname === "/api/auth/signin" && sessionToken) {
-    return NextResponse.redirect(new URL("/", req.url));
+  if (!sessionToken) {
+    return NextResponse.redirect(new URL(SIGNIN_URL, req.url));
   }
 
   return NextResponse.next();
+}
+
+// Specify the paths that the middleware should apply to
+export const config = {
+  matcher: [
+    /*
+     * Apply middleware to all pages except:
+     * 1. /api/* (exclude all API routes)
+     * 2. /_next/* (exclude Next.js assets, e.g., /_next/static/*)
+     */
+    '/((?!api|_next/static|.svg|.ico|_next/image).*)',
+  ],
 }
