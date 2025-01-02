@@ -1,10 +1,11 @@
 import { NextRequest, NextResponse } from "next/server";
+import { auth } from "./auth";
 
-export async function middleware(req : NextRequest) {
-  const sessionToken = req.cookies.get("authjs.session-token");
+export async function middleware(req: NextRequest) {
   const SIGNIN_URL = '/api/auth/signin';
+  const session = await auth();
 
-  if (!sessionToken) {
+  if (!session) {
     return NextResponse.redirect(new URL(SIGNIN_URL, req.url));
   }
 
