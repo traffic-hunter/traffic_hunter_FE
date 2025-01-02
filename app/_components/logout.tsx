@@ -2,7 +2,7 @@
 
 import { signOut } from "next-auth/react"
 
-export default function Logout(){
+export default function Logout() {
 
     const handleLogout = async () => {
         await signOut();
