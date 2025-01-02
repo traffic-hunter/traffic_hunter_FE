@@ -1,0 +1,17 @@
+#!/bin/sh
+. "$(dirname "$0")/_/husky.sh"
+
+# 현재 브랜치 이름 가져오기
+branch_name=$(git symbolic-ref --short HEAD)
+
+# 보호된 브랜치 이름
+protected_branch="main"
+
+# main 브랜치에서 푸시를 차단
+if [ "$branch_name" = "$protected_branch" ]; then
+  echo "🚫 '$protected_branch' 브랜치에 직접 푸시하는 것은 금지되어 있습니다!"
+  echo "💡 별도의 작업 브랜치에서 PR을 생성하여 병합하세요."
+  exit 1
+fi
+
+echo "✅ '$branch_name' 브랜치에 푸시 가능합니다."
